@@ -1,0 +1,17 @@
+#header{
+    padding: .5em;
+    background-color: #f8f8f8 !important;
+    border-bottom: 1px solid gray;
+}
+
+#footer{
+
+background-color: #aabbcc !important;
+position: absolute;
+bottom: 0;
+
+text-align: center;
+
+width: 98%
+
+}

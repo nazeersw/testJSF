@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+    <h:head>
+        <title>Test</title>  
+        <link href="resources/style.css" rel="stylesheet" type="text/css" />
+        <style>
+        		.error {color:red}
+        </style>
+          <f:loadBundle var="def"   basename="Resources.definitions"></f:loadBundle>    
+              
+    </h:head>
+
+	<h:body>
+		
+		
+		<h:form id="loginForm" prependId="false">
+		<p:growl id="msg" showDetail="true" life="4000" />
+		<p:panel rendered="#{loginController.userCache.currentUser.uname!=null}">
+		<ui:include src="header/header.xhtml"/>
+		</p:panel>	
+		
+		
+		<p:panel id="loginPnl" header="Login"
+			style="width: 400px; margin: 0 auto;" rendered="#{loginController.userCache.currentUser.uname==null}">
+		
+			<h:panelGrid id="loginPanel" columns="2" cellpadding="5">
+				
+				<h:outputText value="#{def.USER_NAME}" />
+				
+				<p:inputText id="username" value="#{loginController.uname}" required="true" requiredMessage="#{def.ERROR_BLANK_UNAME}">
+				
+				</p:inputText>
+				
+				<p:spacer /><p:spacer />	
+				
+				<h:outputText value="#{def.PASSWORD}" />
+				
+				<p:password id="password" value="#{loginController.password}" required="true" requiredMessage="#{def.ERROR_BLANK_PASSWORD}" >
+					</p:password>
+					
+				
+				
+			</h:panelGrid>
+		
+			<h:panelGrid columns="1" cellpadding="10" width="100%">
+				<p:commandButton  action="#{loginController.login}"
+				ajax="true" update="loginForm"	value="#{def.LOGIN}"  style="float: right;">
+				</p:commandButton>
+			</h:panelGrid>
+		</p:panel>
+		
+		
+		
+		
+	</h:form>
+	
+
+    
+    	 <ui:include src="footer/footer.html"/> 
+    
+
+	
+
+
+	</h:body>
+	
+</html>
+
+
+
+
+

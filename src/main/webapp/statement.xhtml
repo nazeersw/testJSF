@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+    <h:head>
+        <title>Statments</title>  
+        <link href="resources/style.css" rel="stylesheet" type="text/css" />
+        <style>
+        		.error {color:red}
+        </style>
+          <f:loadBundle var="def"   basename="Resources.definitions"></f:loadBundle>    
+              
+    </h:head>
+
+	<h:body>
+		
+		
+		<h:form id="AccountForm" prependId="false">
+		<p:growl  showDetail="true" life="4000" />
+		<ui:include src="header/header.xhtml"/>
+			
+	<p:panel id="configureP" header="#{def.STATEMENT}" style="text-align:left">
+	
+	
+		<fieldset>
+		<legend>search</legend>
+		<ul >
+			<li>
+			<label>Id <em>*</em></label> <p:inputNumber padControl="false"   value="#{statementController.id}"   required="true"  />
+			
+			<label>start date </label> <p:calendar disabled="#{statementController.userCache.currentUser.type==2}" pattern="dd.MM.yyyy"  value="#{statementController.sdate}" />
+			<label>end date </label> <p:calendar disabled="#{statementController.userCache.currentUser.type==2}"  pattern="dd.MM.yyyy"  value="#{statementController.edate}"  />
+			
+			</li>
+			<li></li>
+			<li></li>
+			
+			<li>
+			
+			<label>start amount </label> <p:inputNumber padControl="false" disabled="#{statementController.userCache.currentUser.type==2}" decimalPlaces="15"  value="#{statementController.samount}"/>
+			<label>end amount </label> <p:inputNumber padControl="false" disabled="#{statementController.userCache.currentUser.type==2}" decimalPlaces="15"  value="#{statementController.eamount}"/><label> </label>
+			
+			<p:commandButton value="Search"  action="#{statementController.process}" ajax="true" update="statmentTable"></p:commandButton>
+			
+			
+			
+			
+			
+			</li>
+			
+		</ul>
+
+	</fieldset>	
+	
+		
+	
+	<p:dataTable id="statmentTable" var="myStatement" value="#{statementController.statements}" paginator="true" rows="10"  
+	                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+	                                     emptyMessage="#{def.IDS_EMPTYTABLE}"
+	                                   
+	                                   
+                					   >
+        					         
+        					         
+        		<p:column headerText="Id">
+                       <h:outputText value="#{myStatement.ID}" />
+                </p:column>
+                
+                
+                       			
+        			
+        			
+        		<p:column headerText="datefield">
+                       <h:outputText value="#{myStatement.datefield}" />
+                </p:column>
+        			
+        			
+        		<p:column headerText="amount">
+                       <h:outputText value="#{myStatement.amount}" />
+                </p:column>			         
+        					         
+        					         
+        			</p:dataTable> 		
+	
+	
+	
+	
+	
+	
+	
+	</p:panel>		
+			
+		
+		
+				
+		
+		
+		
+	</h:form>
+	
+ 
+    
+    
+	
+	</h:body>
+	
+</html>
+
+
+
+
+
